@@ -12,12 +12,14 @@ PORT = os.getenv("POSTGRES_PORT")
 DB = os.getenv("POSTGRES_DB")
 
 # Build the Postgres URL from your .env file
-DATABASE_URL = f"postgresql+asyncpg://{os.getenv('POSTGRES_USER')}:{os.getenv('POSTGRES_PASSWORD')}@{os.getenv('POSTGRES_HOST')}:{os.getenv('POSTGRES_PORT')}/{os.getenv('POSTGRES_DB')}"
-
+DATABASE_URL = (
+    "postgresql+asyncpg://postgres:1234@db:5432/article_db"
+)
 engine = create_async_engine(DATABASE_URL, echo=False)
 AsyncSessionLocal = async_sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
 Base = declarative_base()
 
 
-def get_db():
-    return None
+async def get_db():
+    async with AsyncSessionLocal() as session:
+        yield session

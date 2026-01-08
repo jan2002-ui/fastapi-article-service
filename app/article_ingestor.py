@@ -1,8 +1,9 @@
-import asyncio
 import httpx
-
+from sqlalchemy.connectors import asyncio
 async def fetch_external_data():
-    url = "https://jsonplaceholder.typicode.com/posts"
+    url = (
+        "https://jsonplaceholder.typicode.com/posts"
+    )
     async with httpx.AsyncClient() as client:
         # Broken into two lines to fix E501
         response = await client.get(url)

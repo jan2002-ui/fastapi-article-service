@@ -1,11 +1,9 @@
+from sqlalchemy import Column, Integer, String, Text
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, AsyncSession
 from sqlalchemy.orm import declarative_base
-from app.database import Base
-import sqlalchemy
 
 # app/models.py
-from app.database import Base
-from sqlalchemy import Column, Integer, String, Text
+from database import Base
 
 class Article(Base):
     __tablename__ = "articles"

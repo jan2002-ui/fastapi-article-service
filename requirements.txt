@@ -7,3 +7,5 @@ psycopg2-binary
 httpx~=0.28.1
 aiosqlite
 pydantic~=2.12.5
+spglib~=2.7.0
+pytest~=8.4.0
