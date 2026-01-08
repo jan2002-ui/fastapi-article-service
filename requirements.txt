@@ -1,0 +1,9 @@
+fastapi~=0.128.0
+uvicorn
+sqlalchemy~=2.0.45
+asyncpg
+python-dotenv~=1.2.1
+psycopg2-binary
+httpx~=0.28.1
+aiosqlite
+pydantic~=2.12.5

@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  # 1. The PostgresSQL Database Service
+  db:
+    image: postgres:15
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: article_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # 2. The FastAPI Application Service
+  api:
+    build: .
+    container_name: fastapi_app
+    ports:
+      - "8000:8000"
+    environment:
+      - POSTGRES_HOST=db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_DB=article_db
+      - EXTERNAL_API_URL=https://jsonplaceholder.typicode.com/posts
+    depends_on:
+      - db
+
+# Persistence: Keeps your data safe even if you stop the containers
+volumes:
+  postgres_data:
