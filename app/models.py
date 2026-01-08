@@ -3,7 +3,7 @@ from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, Asyn
 from sqlalchemy.orm import declarative_base
 
 # app/models.py
-from database import Base
+from app.database import Base
 
 class Article(Base):
     __tablename__ = "articles"
